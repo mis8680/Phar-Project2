@@ -1,0 +1,7 @@
+{
+    "require" : {
+        "symfony/console" : "2.2.*"
+    }
+}
+
+
