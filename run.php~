@@ -1,4 +1,0 @@
-<?php 
-
-require "phar://phar_file.phar/bin/index.php";
-
