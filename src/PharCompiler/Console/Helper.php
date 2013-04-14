@@ -1,5 +1,6 @@
 <?php
 
+namespace PharCompiler\Console;
 /**
  * Command line interface Helper.
  *

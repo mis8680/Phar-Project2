@@ -85,19 +85,19 @@ class Make extends Command
 
 	//do not show error message when unlinking $phar
 	@unlink($phar);
-		
+
 	//perform compression
 	//catch exception thrown and display to user if error occurs
 	try {
 	    $p = new Phar($phar, Phar::CURRENT_AS_FILEINFO | Phar::KEY_AS_FILENAME, $phar_name);
-	    
+
 	    echo "\nCompressing files into: ".$phar_name;
 	    echo "\nMaking babies.. \n===================\n";
-	
+
 	    $p->setStub("<?php Phar::mapPhar(); include 'phar://".$phar_name."/".$stub_file."'; __HALT_COMPILER(); ?>");
 
 	    $files = $this->_scandir($root_app);
-	    
+
 	    // counter variable to display the number of files that will be added
 	    $count = 0;
 	    foreach ($files as $file) {
@@ -113,7 +113,7 @@ class Make extends Command
 	    }
 
 	    echo "\nTotal: $count files added\n";
-	    
+
 	    return $this->success("CREATED $phar.. thank you for using:
  _______    _____      _   __	  _   __        _
 |__   __|  / ___ \    | | / /    | | / /       / \
@@ -128,13 +128,13 @@ class Make extends Command
 Jokka is a complete symfony based phar compiling tool.
 Jokka is built with the help of (c) Jeremy Perret's <jeremy@devstar.org> Empir php compiling tool.
 phar.readonly must be set to 0 within your php.ini in order to run");
-	
+
 	    $phar_copy = $phar.'phar';
 	    @unlink($phar_copy);
 	    $p = $p->convertToExecutable(Phar::PHAR, Phar::NONE);
 	    $this->success("CREATE $phar_copy");
 	    @unlink($phar);
-		
+
 	} catch (Exception $e) {
 		return $this->error($e->getMessage());
 	}
@@ -251,7 +251,7 @@ phar.readonly must be set to 0 within your php.ini in order to run");
 	if ($message != '') {
 	    //create a new output instance variable
 	    $output = new ConsoleOutput();
-	    
+
 	    $output->writeln("<error>ERROR: $message\n</error>");
 	}
 	return $errno;
@@ -264,7 +264,7 @@ phar.readonly must be set to 0 within your php.ini in order to run");
     {
 	//create a new output instance variable
 	$output = new ConsoleOutput();
-	
+
 	$output->writeln("<info>$message\n</info>");
     }
     
@@ -275,7 +275,7 @@ phar.readonly must be set to 0 within your php.ini in order to run");
     {
 	$items = array();
 	$path = rtrim($path, '/');
-	
+
 	if (!$current_dir = opendir($path)) {
 		return $items;			
 	}

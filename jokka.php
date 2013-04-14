@@ -1,10 +1,13 @@
+
 <?php
 
+define('BASEPATH','/home/mis8680/WebServer/Phar-Project2');
+
 //include the composer autoloader
-$autoloader = require_once __DIR__ . '/vendor/autoload.php';
+$autoloader = require_once BASEPATH . '/vendor/autoload.php';
 
 //add 'our' source directory to the autoloader
-$autoloader->add('PharCompiler', 'src');
+$autoloader->add('PharCompiler', BASEPATH .'/src');
 
 //create a new applocation instance
 $application = new Symfony\Component\Console\Application(
@@ -35,3 +38,4 @@ $application->addCommands(
 
 //runs the application
 $application->run();
+?>
