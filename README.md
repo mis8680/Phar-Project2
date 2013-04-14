@@ -9,10 +9,14 @@ of grouping several files into a single file. Therefore, making it easy to distr
 file and running it from that file.
 
 ## Classes
-Name
---description
+Helper
+--
 
+Application
+--
 
+Color
+--
 
 
 ## Team
