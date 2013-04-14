@@ -5,6 +5,7 @@ config.php
 ## Eclipse
 #################
 
+*.*~
 *.pydevproject
 .project
 .metadata
