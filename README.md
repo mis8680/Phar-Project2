@@ -9,14 +9,12 @@ of grouping several files into a single file. Therefore, making it easy to distr
 file and running it from that file.
 
 ## Classes
-Helper
---
+Helper -- class for hepling with the command line interface
 
-Application
---
+Application -- class that runs the compiling of PHP files into a phar
+application
 
-Color
---
+Color -- class for setting colors for the command line interface
 
 
 ## Team
