@@ -2,7 +2,7 @@
 <?php
 
 //include the composer autoloader
-$autoloader = require_once '/vendor/autoload.php';
+$autoloader = require_once __DIR__ . '/vendor/autoload.php';
 
 //add 'our' source directory to the autoloader
 $autoloader->add('PharCompiler', 'src');
