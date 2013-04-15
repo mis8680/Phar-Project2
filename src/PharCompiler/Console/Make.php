@@ -55,33 +55,11 @@ class Make extends Command
 	//set the phar stub file to be run
 	$stub_file = trim($stub);
 	//set the root app where phar will be created from
-	$root_app = $root;
-	//set the compression type
-	//$_compression = 'no';
-	//set the format to compress on (phar)
-	//$_format = 'phar';
+	$root_app = $root;	
 
 	if (!file_exists($root_app)) {
 		return $this->error("Root dir of your app doesn't exist.");
 	}
-
-	/*if (!empty($_compression) && !in_array($_compression, $this->compression_types)) {
-		return $this->error("Unrecognized compression: $_compression");
-	}
-	if (!empty($_format) && !in_array($_format, $this->format_types)) {
-		return $this->error("Unrecognized format: $_format");
-	}
-
-	if (!empty($_fexclude)) {
-		$_fexclude = $this->makeAbsolute($_fexclude);
-		if (!file_exists($_fexclude)) {
-			return $this->error("Exclude file: $_fexclude not found.");
-		}
-		$_fexclude = file_get_contents($_fexclude);
-	}
-
-	$shell_masks = explode('|', $_exclude);
-	$shell_masks = array_merge($shell_masks, explode("\n", $_fexclude));*/
 
 	//do not show error message when unlinking $phar
 	@unlink($phar);
@@ -91,7 +69,7 @@ class Make extends Command
 	try {
 	    $p = new Phar($phar, Phar::CURRENT_AS_FILEINFO | Phar::KEY_AS_FILENAME, $phar_name);
 
-	    echo "\nCompressing files into: ".$phar_name;
+	    echo "\nCompressing files into: " . $phar_name;
 	    echo "\nMaking babies.. \n===================\n";
 
 	    $p->setStub("<?php Phar::mapPhar(); include 'phar://".$phar_name."/".$stub_file."'; __HALT_COMPILER(); ?>");
@@ -152,96 +130,7 @@ phar.readonly must be set to 0 within your php.ini in order to run");
 	}
     }
     
-    /**
-     *
-     */
-    private function get_var($var)
-    {
-	if (is_string($var)) {
-	    if (isset($this->$var)) {
-		return $this->$var;
-	    }
-	} else {
-	    foreach (array_merge($this->compression_types, $this->format_types) as $v) {
-		if ($this->$v->int_value == $var) {
-		    return $this->$v;
-		}
-	    }
-	}
-    }
     
-    /**
-     *
-     */
-    protected function makeAbsolute($path = '')
-    {
-	$current = getcwd().'/';
-    	
-	if ($path === "" || $path === false) {
-	    $absolut_path = $current;
-	} elseif (substr($path, 0, 2) == './') {
-	    $absolut_path = $current.substr($path, 2);
-	} elseif (strpos($path, ':') === 1 || substr($path, 0, 2) == '\\\\' || substr($path, 0, 1) == '/') {
-	    $absolut_path = $path;
-	} else {
-	    $absolut_path = $current.$path;
-	}
-
-	$absolut_path = str_replace('\\', '/', $absolut_path);
-	$absolut_path = rtrim($absolut_path, '/');
-
-	return $absolut_path;
-    }
-    
-    /**
-     *
-     */
-    protected function execCommand()
-    {
-	if (isset($this->commands[$this->command])) {
-            $method = $this->commands[$this->command];
-	    $rcode = $this->$method();
-	} else {
-	    $rcode = $this->error("Command <$this->command> doesn't exist. Try -h");
-        }
-	$this->
-        return ($rcode == null) ? 0 : $rcode;
-    }
-
-    /**
-     *
-     */
-    protected function get_option($no)
-    {
-    	if (isset($this->options[$no])) {
-    	    return $this->options[$no];
-    	}
-    	return null;
-    }
-
-    /**
-     *
-     */
-    protected function get_last_option($opt)
-    {
-    	foreach ($this->options as $option) {
-    	    if (strpos($option, "--$opt=") !== false) {
-    		return trim(end(explode('=', $option)), '"');
-    	    }
-    	}
-    	return null;
-    }
-    
-    /**
-     *
-     */
-    protected function request_option($no, $name)
-    {
-    	if ($this->get_option($no) == null) {
-    	    exit($this->error("Param $name is required. Try -h"));
-    	}
-	return $this->get_option($no);
-    }
     
     /**
      *

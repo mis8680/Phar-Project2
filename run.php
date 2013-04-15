@@ -1,4 +1,4 @@
 <?php 
 
-require "phar://example.phar/bin/index.php";
+require "phar://example.phar/index.php";
 
