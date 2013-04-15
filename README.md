@@ -7,7 +7,7 @@ developers to use and make their lives just a little bit easier.
 This project is a phar compiler that compiles files into a phar extension from a command line interface.  Phar archives are a convenient way
 of grouping several files into a single file. Therefore, making it easy to distribute complete PHP applications into a single
 file and running it from that file.
-
+<
  _______    _____      _   __	  _   __        _
 |__   __|  / ___ \    | | / /    | | / /       / \
    | |	  / /   \ \   | |/ /     | |/ /       / / \
@@ -21,6 +21,7 @@ file and running it from that file.
 Jokka is a complete symfony based phar compiling tool.
 Jokka is built with the help of (c) Jeremy Perret's <jeremy@devstar.org> Empir php compiling tool.
 
+>
 ## Classes
 Jokka.php -- execution class to run jokka compiler
 
